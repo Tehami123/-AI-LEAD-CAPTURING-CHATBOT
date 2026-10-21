@@ -24,3 +24,62 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.chat-window-enter {
+  animation: chat-window-enter 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: bottom right;
+}
+
+@keyframes chat-window-enter {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.typing-dots {
+  display: inline-flex;
+  gap: 0.2rem;
+}
+
+.typing-dots span {
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 9999px;
+  background-color: currentColor;
+  animation: typing-dot 1s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+.typing-dots span:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+@keyframes typing-dot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translateY(-0.2rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-window-enter,
+  .typing-dots span {
+    animation: none;
+  }
+}
